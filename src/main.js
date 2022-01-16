@@ -20,18 +20,88 @@ const toScale = (mm) => {
 }
 
 const boxH = toScale(10);
-const boxW = toScale(25.4);
-const [left, top] = [toScale(8), toScale(14)]
+const boxW = toScale(24);
+const spacer = toScale(3);
+const [left, top] = [toScale(8), toScale(13.5)]
 
-let content = [];
+let content = [
+  {
+    style: 'tableExample',
+    table: {
+      widths: [boxW, spacer, boxW, spacer, boxW, spacer, boxW, spacer, boxW, spacer, boxW, spacer, boxW],
+      body: [
+        [
+          {
+            border: [false, false, false, false],
+            fillColor: '#dddddd',
+            text: '1'
+          },
+          {
+            border: [false, false, false, false],
+            fillColor: '#dddddd',
+            text: ''
+          },
+          {
+            border: [false, false, false, false],
+            fillColor: '#dddddd',
+            text: '2'
+          },
+          {
+            border: [false, false, false, false],
+            fillColor: '#dddddd',
+            text: ''
+          },
+          {
+            border: [false, false, false, false],
+            fillColor: '#dddddd',
+            text: '3'
+          },
+          {
+            border: [false, false, false, false],
+            fillColor: '#dddddd',
+            text: ''
+          },
+          {
+            border: [false, false, false, false],
+            fillColor: '#dddddd',
+            text: '4'
+          },
+          {
+            border: [false, false, false, false],
+            fillColor: '#dddddd',
+            text: ''
+          },
+          {
+            border: [false, false, false, false],
+            fillColor: '#dddddd',
+            text: '6'
+          },
+          {
+            border: [false, false, false, false],
+            fillColor: '#dddddd',
+            text: ''
+          },
+          {
+            border: [false, false, false, false],
+            fillColor: '#dddddd',
+            text: '7'
+          },
+        ],
+      ]
+    },
+    layout: {
+      defaultBorder: false,
+    }
+  },
+];
 
 let currentHeight = top;
 let currentWidth = left;
 
 for (let j = 0; j < 27; j++) {
   for (let i = 0; i < 7; i++) {
-    content.push(element(currentWidth, currentHeight, "hallo"));
-    currentWidth += boxW + toScale(3.4);
+    //content.push(element(currentWidth, currentHeight, "hallo"));
+    currentWidth += boxW + toScale(3);
   }
   currentWidth = left;
   currentHeight += boxH;
@@ -40,12 +110,18 @@ for (let j = 0; j < 27; j++) {
 const docDefinition = {
   pageSize: 'A4',
   content: content,
+  styles: {
+		tableExample: {
+			margin: [0, 0, 0, 0]
+		},
+  },
+  pageMargins: [left, top, left, top]
 }
 
 function element(x,y, text) {
   return {
     text: text,
-    absolutePosition: {x, y}
+    absolutePosition: {x, y},
   };
 };
 
