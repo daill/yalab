@@ -8,6 +8,7 @@ const timesRomanFont = await pdfDoc.embedFont(StandardFonts.TimesRoman)
 
 // A4 - 210mm x 297mm
 // A4 - 595.28, 841.89
+// Box w25,4 x h10 mm
 const factor = 2.83466
 // Add a blank page to the document
 const page = pdfDoc.addPage(PageSizes.A4)
@@ -19,15 +20,32 @@ function fromMm(mm) {
   return mm * factor;
 }
 
+const boxH = 10;
+const boxW = 25.3;
+const spaceBetween = 4;
+const spaceTop = 14;
+const spaceLeft = 8;
+
 // Draw a string of text toward the top of the page
 const fontSize = 30
-page.drawText('Creating PDFs in JavaScript is awesome!', {
-  x: fromMm(8),
-  y: height-fromMm(14),
-  size: fontSize,
-  font: timesRomanFont,
-  color: rgb(0, 0.53, 0.71),
-})
+let top = height-fromMm(spaceTop);
+let left = fromMm(spaceLeft);
+for (let j = 0; j < 27; j++) {
+  for (let i = 0; i < 7; i++) {
+    page.drawRectangle({
+      x: left,
+      y: top,
+      width: fromMm(boxW),
+      height: fromMm(boxH),
+      borderWidth: 0,
+      color: rgb(0.75, 0.2, 0.2),
+      opacity: 0.5,
+    });
+    left += fromMm(spaceBetween+boxW);
+  }
+  left = fromMm(spaceLeft);
+  top -= fromMm(boxH);
+}
 
 // Serialize the PDFDocument to bytes (a Uint8Array)
 const pdfBytes = await pdfDoc.save()
