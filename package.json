@@ -17,12 +17,13 @@
         "babel-loader": "^8.0.5",
         "file-loader": "^6.2.0",
         "html-webpack-plugin": "^5.3.2",
-        "pdfmake": "^0.2.4",
+        "jspdf": "^2.5.0",
         "webpack": "^5.65.0",
         "webpack-cli": "^4.9.1",
         "webpack-dev-server": "^4.7.2"
     },
     "dependencies": {
-        "pdfmake": "^0.2.4"
+        "brfs": "^2.0.2",
+        "jspdf": "^2.5.0"
     }
 }
