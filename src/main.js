@@ -1,8 +1,6 @@
 import { jsPDF } from "jspdf";
 
-// Default export is a4 paper, portrait, using millimeters for units
 const doc = new jsPDF({format: 'a4'});
-
 
 const boxH = 10;
 const boxW = 24.6;
